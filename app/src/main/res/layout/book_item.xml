@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/book_thumbanil"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/book_thumbnail"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/book_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/dark_grey"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/book_authors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="14sp" />
+
+        <RatingBar
+            android:id="@+id/book_average_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            style="?android:attr/ratingBarStyleSmall"
+            android:theme="@style/MyRatingBar" />
+
+    </LinearLayout>
+
+</LinearLayout>

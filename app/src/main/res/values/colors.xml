@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#A0A1A3</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#3897F0</color>
+    <color name="average_ranting_progress_tint">#F8C272</color>
+    <color name="button_disabled_color">#C3E0FA</color>
+    <color name="dark_grey">#494747</color>
+    <color name="light_grey">#D7D8DA</color>
+</resources>

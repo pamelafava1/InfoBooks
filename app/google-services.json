@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "199448695600",
+    "firebase_url": "https://info-books-bcde0.firebaseio.com",
+    "project_id": "info-books-bcde0",
+    "storage_bucket": "info-books-bcde0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199448695600:android:bfaa2da3b78ebcefc22ef5",
+        "android_client_info": {
+          "package_name": "it.uniupo.infobooks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "199448695600-g615g8se56h2m4qvu34gqsckngdlggue.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "it.uniupo.infobooks",
+            "certificate_hash": "494db236892e91c491de972f07788ab817896fd4"
+          }
+        },
+        {
+          "client_id": "199448695600-od8lrfl70elgv04rm59kdncos1tc44cr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTQ6ktPFtZWysGy1sdX6jOZJcOj4biO3o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "199448695600-od8lrfl70elgv04rm59kdncos1tc44cr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
