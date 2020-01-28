@@ -1,6 +1,7 @@
 package it.uniupo.infobooks;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -30,7 +31,7 @@ import it.uniupo.infobooks.util.Constants;
 import it.uniupo.infobooks.util.LocationTracker;
 import it.uniupo.infobooks.util.Util;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
     private List<Book> mDataset = new ArrayList<>();
@@ -83,17 +84,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                 });
 
-                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                    @Override
-                    public boolean onMarkerClick(Marker marker) {
-                        marker.showInfoWindow();
-                        return true;
-                    }
-                });
+                mMap.setOnMarkerClickListener(this);
             } else {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
             }
         }
+    }
+
+    // Se l'utente clicca un marker viene mostrato l'InfoWindow che contiene le informazioni relative al libro
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        marker.showInfoWindow();
+        return true;
     }
 
     private void addItemsToMaps() {

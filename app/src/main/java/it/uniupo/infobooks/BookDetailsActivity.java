@@ -173,13 +173,13 @@ public class BookDetailsActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(BookDetailsActivity.this, getString(R.string.saved), Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "Book added");
+                        Log.d(TAG, "Book saved");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding book", e);
+                        Log.w(TAG, "Error saving book", e);
                         Toast.makeText(BookDetailsActivity.this, getString(R.string.error_message), Toast.LENGTH_SHORT).show();
                     }
                 });

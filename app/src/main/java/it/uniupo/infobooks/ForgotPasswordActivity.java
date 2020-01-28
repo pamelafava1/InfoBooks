@@ -90,10 +90,10 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                                     finish();
                                 } else if (task.getException() instanceof FirebaseAuthInvalidUserException) {
                                     // Tale eccezione viene generata se l'account corrispondente all'email non esiste o e' stato disabilito
-                                    Log.d(TAG, "Account not found", task.getException());
+                                    Log.w(TAG, "Account not found", task.getException());
                                     Toast.makeText(ForgotPasswordActivity.this, getString(R.string.account_not_found), Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Log.d(TAG, "Email sending failed", task.getException());
+                                    Log.w(TAG, "Email sending failed", task.getException());
                                     Toast.makeText(ForgotPasswordActivity.this, getString(R.string.error_message), Toast.LENGTH_SHORT).show();
                                 }
                             }
