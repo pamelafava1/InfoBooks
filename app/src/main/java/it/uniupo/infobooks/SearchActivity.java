@@ -41,6 +41,7 @@ import java.util.List;
 
 import it.uniupo.infobooks.adapter.BookAdapter;
 import it.uniupo.infobooks.model.Book;
+import it.uniupo.infobooks.util.Constants;
 import it.uniupo.infobooks.util.QueryUtil;
 import it.uniupo.infobooks.util.Util;
 
@@ -65,8 +66,8 @@ public class SearchActivity extends AppCompatActivity {
             mDataset = new ArrayList<>();
             visibility = View.GONE;
         } else {
-            mDataset = savedInstanceState.getParcelableArrayList("dataset");
-            visibility = savedInstanceState.getInt("visibility");
+            mDataset = savedInstanceState.getParcelableArrayList(Constants.DATASET);
+            visibility = savedInstanceState.getInt(Constants.VISIBILITY);
         }
 
         Toolbar toolbar = findViewById(R.id.search_bar);
@@ -117,7 +118,7 @@ public class SearchActivity extends AppCompatActivity {
                     saveBook(book);
                     Intent intent = new Intent(SearchActivity.this, BookDetailsActivity.class);
                     // Viene passato il libro selezionato a BookDetailsActivity
-                    intent.putExtra("book", book);
+                    intent.putExtra(Constants.BOOK, book);
                     startActivity(intent);
                 }
             }
@@ -288,7 +289,7 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelableArrayList("dataset", (ArrayList<? extends Parcelable>) mDataset);
-        outState.putInt("visibility", mEmptyState.getVisibility());
+        outState.putParcelableArrayList(Constants.DATASET, (ArrayList<? extends Parcelable>) mDataset);
+        outState.putInt(Constants.VISIBILITY, mEmptyState.getVisibility());
     }
 }

@@ -87,7 +87,7 @@ public class SignupActivity extends AppCompatActivity {
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
         // Metodo che viene richiamato quando il testo dell'email o della password viene modificato
-        // Finche' l'email e' vuota e la password e' minore di sei caratteri il bottone per loggarsi rimane disabilitato, in caso contrario viene abilitato
+        // Finche' l'email e' vuota e la password e' minore di sei caratteri il bottone per registrarsi rimane disabilitato, in caso contrario viene abilitato
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             mEmailWrapper.setError("");

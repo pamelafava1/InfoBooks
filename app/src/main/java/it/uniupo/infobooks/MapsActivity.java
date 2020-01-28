@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.uniupo.infobooks.model.Book;
+import it.uniupo.infobooks.util.Constants;
 import it.uniupo.infobooks.util.LocationTracker;
 import it.uniupo.infobooks.util.Util;
 
@@ -33,6 +34,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private List<Book> mDataset = new ArrayList<>();
+    private LocationTracker mLocationTracker;
     private static final float DEFAULT_ZOOM = 15f;
     private static final int REQUEST_LOCATION = 101;
 
@@ -53,16 +55,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         if (mMap != null) {
-            if (!Util.checkPermissions(this, Manifest.permission.ACCESS_COARSE_LOCATION) && !Util.checkPermissions(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
-            } else {
-
-                LocationTracker locationTracker = new LocationTracker(this);
-                if (locationTracker.canGetLocaion()) {
-                    LatLng latLng = new LatLng(locationTracker.getLatitude(), locationTracker.getLongitude());
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM));
+            if (Util.checkPermissions(this, Manifest.permission.ACCESS_COARSE_LOCATION) && Util.checkPermissions(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+                mLocationTracker = new LocationTracker(this);
+                if (mLocationTracker.canGetLocaion()) {
+                    if (!String.valueOf(mLocationTracker.getLatitude()).equals("0.0") && !String.valueOf(mLocationTracker.getLongitude()).equals("0.0")) {
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                                new LatLng(mLocationTracker.getLatitude(), mLocationTracker.getLongitude()), DEFAULT_ZOOM));
+                    }
                 } else {
-                    locationTracker.showSettingsAlertDialog();
+                    mLocationTracker.showSettingsAlertDialog();
                 }
 
                 mMap.setMyLocationEnabled(true);
@@ -89,6 +90,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         return true;
                     }
                 });
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
             }
         }
     }
@@ -113,7 +116,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void fetchBooks() {
         FirebaseFirestore
                 .getInstance()
-                .collection("maps")
+                .collection(Constants.MAPS)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -138,6 +141,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mapFragment.setRetainInstance(true);
                 mapFragment.getMapAsync(this);
             }
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mLocationTracker != null) {
+            mLocationTracker.stopListener();
         }
     }
 }

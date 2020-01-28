@@ -33,7 +33,7 @@ public class Util {
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-
+    // Metodo che permette di verificare se l'applicazione dispone dell'autorizzazione passata come parametro
     public static boolean checkPermissions(Context context, String permission) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED;

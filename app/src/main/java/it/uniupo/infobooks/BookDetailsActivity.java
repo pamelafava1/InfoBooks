@@ -26,6 +26,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import it.uniupo.infobooks.model.Book;
+import it.uniupo.infobooks.util.Constants;
 import it.uniupo.infobooks.util.LocationTracker;
 import it.uniupo.infobooks.util.Util;
 
@@ -165,7 +166,7 @@ public class BookDetailsActivity extends AppCompatActivity {
         mBook.setEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail());
         DocumentReference documentReference = FirebaseFirestore
                 .getInstance()
-                .collection("maps")
+                .collection(Constants.MAPS)
                 .document(mSelfLink.substring(44) + latitude + longitude);
         documentReference.set(mBook)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -196,7 +197,7 @@ public class BookDetailsActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelable("book", mBook);
+        outState.putParcelable(Constants.BOOK, mBook);
     }
 
     @Override

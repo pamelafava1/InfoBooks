@@ -29,6 +29,7 @@ import java.util.List;
 
 import it.uniupo.infobooks.adapter.BookAdapter;
 import it.uniupo.infobooks.model.Book;
+import it.uniupo.infobooks.util.Constants;
 import it.uniupo.infobooks.util.Util;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,9 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
         int visibility;
         if (savedInstanceState != null) {
-            mDataset = savedInstanceState.getParcelableArrayList("dataset");
-            visibility = savedInstanceState.getInt("visibility");
-            isUpdated = savedInstanceState.getBoolean("isUpdate");
+            mDataset = savedInstanceState.getParcelableArrayList(Constants.DATASET);
+            visibility = savedInstanceState.getInt(Constants.VISIBILITY);
+            isUpdated = savedInstanceState.getBoolean(Constants.IS_UPDATE);
         } else {
             mDataset = new ArrayList<>();
             isUpdated = false;
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book book = mDataset.get(position);
                 Intent intent = new Intent(MainActivity.this, BookDetailsActivity.class);
-                intent.putExtra("book", book);
+                intent.putExtra(Constants.BOOK, book);
                 startActivity(intent);
             }
         });
@@ -96,10 +97,8 @@ public class MainActivity extends AppCompatActivity {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                if (Util.isNetworkAvailable(MainActivity.this)) {
-                    if (!isUpdated) {
-                        retrieveBook();
-                    }
+                if (Util.isNetworkAvailable(MainActivity.this) && !isUpdated) {
+                    retrieveBook();
                 }
                 mSwipeRefreshLayout.setRefreshing(false);
             }
@@ -108,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
 
     // Permette di recuperare la cronologia dell'utente dal Cloud Firestore
     private void retrieveBook() {
+        isUpdated = true;
+
         mTextView.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.VISIBLE);
 
@@ -135,9 +136,8 @@ public class MainActivity extends AppCompatActivity {
                                 // Altrimenti viene nascosta la TextView
                                 mTextView.setVisibility(View.GONE);
                             }
-                            // Una volta caricati tutti i libri, isUpdated viene impostato a true
-                            // isUpdated serve per evitare di accedere al Cloud quando non e' necessario
-                            isUpdated = true;
+                        } else {
+                            isUpdated = false;
                         }
                     }
                 });
@@ -191,9 +191,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelableArrayList("dataset", (ArrayList<? extends Parcelable>) mDataset);
-        outState.putInt("visibility", mTextView.getVisibility());
-        outState.putBoolean("isUpdate", isUpdated);
+        outState.putParcelableArrayList(Constants.DATASET, (ArrayList<? extends Parcelable>) mDataset);
+        outState.putInt(Constants.VISIBILITY, mTextView.getVisibility());
+        outState.putBoolean(Constants.IS_UPDATE, isUpdated);
     }
 
     @Override
