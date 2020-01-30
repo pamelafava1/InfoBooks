@@ -105,7 +105,7 @@ public class SignupActivity extends AppCompatActivity {
         // Nel caso ci fosse si prosegue con la registrazione dell'account, in caso contrario viene visualizzato un Toast con un messaggio di errore
         if (Util.isNetworkAvailable(this)) {
 
-            // Controlla che il fromato dell'email sia corretto
+            // Controlla che il formato dell'email sia corretto
             if (Patterns.EMAIL_ADDRESS.matcher(mEmail).matches()) {
 
                 mProgressBar.setVisibility(View.VISIBLE);

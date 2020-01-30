@@ -47,9 +47,9 @@ public class BookDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book_details);
 
         if (savedInstanceState != null) {
-            mBook = savedInstanceState.getParcelable("book");
+            mBook = savedInstanceState.getParcelable(Constants.BOOK);
         } else {
-            mBook = getIntent().getParcelableExtra("book");
+            mBook = getIntent().getParcelableExtra(Constants.BOOK);
             mSelfLink = mBook.getSelfLink();
         }
 
@@ -180,7 +180,7 @@ public class BookDetailsActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Error saving book", e);
-                        Toast.makeText(BookDetailsActivity.this, getString(R.string.error_message), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BookDetailsActivity.this, getString(R.string.error_message_saving_book_on_map), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

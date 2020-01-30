@@ -144,6 +144,7 @@ public class SearchActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Error saving book", e);
+                        Toast.makeText(SearchActivity.this, getString(R.string.error_message_saving_book), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

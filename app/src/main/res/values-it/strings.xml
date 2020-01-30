@@ -11,6 +11,8 @@
     <string name="book_not_found">Libro non trovato, riprova!</string>
     <string name="book_thumbnail">Miniatura del libro</string>
     <string name="cancelled">Annullata</string>
+    <string name="error_message_saving_book_on_map">Si è verificato un errore durante l\'aggiunta del libro sulla mappa</string>
+    <string name="error_message_saving_book">Si è verificato un errore durante l\'aggiunta del libro</string>
     <string name="description">Descrizione:</string>
     <string name="email_error_message">Inserisci una email valida.</string>
     <string name="exit_message">Sei sicuro di voler chiudere l\'applicazione?</string>
