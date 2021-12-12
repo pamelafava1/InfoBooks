@@ -5,4 +5,4 @@ Using Google Book webservice, the app retrieves information from a book from its
 Every time the app retrieves information about the selected book, the book data and the user's location are stored into the cloud, and the app displays the information (cover title editor etc.) in a new activity.
 The app stores an history of requests.
 
-![Alt text](https://github.com/pamelafava1/InfoBooks/blob/master/InfoBooks.jpg)
+![Alt text](https://github.com/pamelafava1/NoteYourNote/blob/master/NoteYourNote.jpg)
